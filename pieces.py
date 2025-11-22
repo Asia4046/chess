@@ -19,15 +19,56 @@ def move_rook(board, pos, move_pos):
         elif c_rk - m_c == 0 and  m_r - r_rk > 0:
             move_down = True
 
-        if m_r == r_rk or m_c == c_rk:
-            if board[m_r][m_c] != "__":
-                print("Error:  No place to move  rook")
+        if move_right == True:                                                                                                                                                                                                                                            
+            for i in range(c_rk+1, m_c):
+               if board[r_rk][i] != "__" : 
+                    print("illegal move")                
+                    break
             else:
-                p.change_position(board, pos, move_pos)
-        elif m_r == r_rk and m_c == c_rk:
-            print("Cannot move to the same place")
+                if p.get_piece(board, pos)[0] == "W" and p.get_piece(board, move_pos)[0] == "W":
+                    print("cannot cut own  piece")
+                elif p.get_piece(board, pos)[0] == "B" and p.get_piece(board, move_pos)[0] == "B":
+                    print("cannot cut own  piece")
+                else:
+                    cut_piece(board, pos, move_pos)        
+        elif move_left == True:                                                                                                                                                                                                                                            
+            for i in range(m_c+1, c_rk):                            
+               if board[r_rk][i] != "__" : 
+                    print("illegal move")
+                    break
+            else:
+                if p.get_piece(board, pos)[0] == "W" and p.get_piece(board, move_pos)[0] == "W":
+                    print("cannot cut own  piece")
+                elif p.get_piece(board, pos)[0] == "B" and p.get_piece(board, move_pos)[0] == "B":
+                    print("cannot cut own  piece")
+                else:
+                    cut_piece(board, pos, move_pos)  
+        elif move_down == True:                                                                                                                                                                                                                                            
+            for i in range(r_rk+1, m_r):                            
+               if board[i][c_rk] != "__" : 
+                    print("illegal move")
+                    break
+            else:
+                if p.get_piece(board, pos)[0] == "W" and p.get_piece(board, move_pos)[0] == "W":
+                    print("cannot cut own  piece")
+                elif p.get_piece(board, pos)[0] == "B" and p.get_piece(board, move_pos)[0] == "B":
+                    print("cannot cut own  piece")
+                else:
+                    cut_piece(board, pos, move_pos) 
+        elif move_up == True:                                                                                                                                                                                                                                            
+            for i in range(m_r+1, r_rk):                            
+               if board[i][c_rk] != "__" : 
+                    print("illegal move")
+                    break
+            else:
+                if p.get_piece(board, pos)[0] == "W" and p.get_piece(board, move_pos)[0] == "W":
+                    print("cannot cut own  piece")
+                elif p.get_piece(board, pos)[0] == "B" and p.get_piece(board, move_pos)[0] == "B":
+                      print("cannot cut own  piece")
+                else:
+                    cut_piece(board, pos, move_pos)
         else:
-            print("Cannot move diagonally!!")
+            print("Cannot move diagonally")
     else:
         print(p.get_piece(board, pos))
         print("Error: Selected postion does not  contain a rook!!")
