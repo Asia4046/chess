@@ -1,9 +1,7 @@
 import position as p
 import pieces as pie
 
-
-current_piece = ""
-
+# Placeholder for testing
 board = [['  ', 'a ', 'b ', 'c ', 'd ', 'e ', 'f ', 'g ', 'h ' ],
          ['1 ', '__', 'WH', 'WB', 'WQ', 'WK', 'WB', 'WH', 'WR' ],
          ['2 ', 'WP', '__', 'BP', '__', 'WP', 'WP', 'WP', 'WP' ],
@@ -58,6 +56,7 @@ while True:
    exit()
 '''
 
+# code for testing
 print_board(board)
 while True:
     print("\n")

@@ -1,5 +1,6 @@
 import position as p
 
+# rook logic
 def move_rook(board, pos, move_pos):
     if p.get_piece(board, pos) == "BR" or p.get_piece(board, pos) == "WR":
         r_rk, c_rk = p.get_pos(pos)
