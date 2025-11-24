@@ -23,21 +23,20 @@ b_board = [['  ', 'a ', 'b ', 'c ', 'd ', 'e ', 'f ', 'g ', 'h ' ],
          ['8 ', 'BR', 'BH', 'BB', 'BQ', 'BK', 'BB', 'BH', 'BR' ]]
 
 
-def print_board(board):
-    for i in board:
+def print_board(c_board):
+    for i in c_board:
         for j in i:
             print(j, end = "   ")
         print("\n")
     print("\n")
 
-def  user_change_pos(board, pi, pf):   
-    
+def  user_change_pos(c_board, pi, pf):
     r, c = p.get_pos(pf)
     if board[r][c] != '__':
         print("Position not empty!!")
     else:
-      p.change_position(board, pi, pf)      
-      print_board(board)
+      p.change_position(c_board, pi, pf)
+      print_board(c_board)
 
 '''
 # Main cmd-line
