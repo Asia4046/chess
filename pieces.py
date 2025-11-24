@@ -6,26 +6,23 @@ def move_rook(board, pos, move_pos):
     final_color = get_color(board, move_pos)
 
     if p.get_piece(board, pos) == "BR" or p.get_piece(board, pos) == "WR":
-        r_rk, c_rk = p.get_pos(pos)
-        m_r, m_c = p.get_pos(move_pos)
+        initial_rook_row, initial_rook_column = p.get_pos(pos)
+        rook_move_row, rook_move_column = p.get_pos(move_pos)
 
-        move_up = False
-        move_down = False
-        move_left  = False
-        move_right = False
+        move_up, move_down, move_left, move_right = False
 
-        if r_rk - m_r == 0 and  m_c - c_rk < 0:
+        if initial_rook_row - rook_move_row == 0 and  rook_move_column - initial_rook_column < 0:
             move_left = True
-        elif r_rk - m_r == 0 and  m_c - c_rk > 0:
+        elif initial_rook_row - rook_move_row == 0 and  rook_move_column - initial_rook_column > 0:
             move_right = True
-        elif c_rk - m_c == 0 and  m_r - r_rk < 0:
+        elif initial_rook_column - rook_move_column == 0 and  rook_move_row - initial_rook_row < 0:
             move_up = True
-        elif c_rk - m_c == 0 and  m_r - r_rk > 0:
+        elif initial_rook_column - rook_move_column == 0 and  rook_move_row - initial_rook_row > 0:
             move_down = True
 
         if move_right:
-            for i in range(c_rk+1, m_c):
-               if board[r_rk][i] != "__" : 
+            for i in range(initial_rook_column + 1, rook_move_column):
+               if board[initial_rook_row][i] != "__" :
                     print("illegal move")                
                     break
             else:
@@ -34,8 +31,8 @@ def move_rook(board, pos, move_pos):
                 else:
                     cut_piece(board, pos, move_pos)        
         elif move_left:
-            for i in range(m_c+1, c_rk):                            
-               if board[r_rk][i] != "__" : 
+            for i in range(rook_move_column + 1, initial_rook_column):
+               if board[initial_rook_row][i] != "__" :
                     print("illegal move")
                     break
             else:
@@ -44,8 +41,8 @@ def move_rook(board, pos, move_pos):
                 else:
                     cut_piece(board, pos, move_pos)
         elif move_down:
-            for i in range(r_rk+1, m_r):                            
-               if board[i][c_rk] != "__" : 
+            for i in range(initial_rook_row + 1, rook_move_row):
+               if board[i][initial_rook_column] != "__" :
                     print("illegal move")
                     break
             else:
@@ -54,8 +51,8 @@ def move_rook(board, pos, move_pos):
                 else:
                     cut_piece(board, pos, move_pos)
         elif move_up:
-            for i in range(m_r+1, r_rk):                            
-               if board[i][c_rk] != "__" : 
+            for i in range(rook_move_row + 1, initial_rook_row):
+               if board[i][initial_rook_column] != "__" :
                     print("illegal move")
                     break
             else:
