@@ -1,9 +1,8 @@
-row = 0 
-col = 0
-
 def get_pos(pos):
+    row = 0
+    col = 0
 
-    if len(pos) > 2 and len(pos) < 2:
+    if len(pos) > 2 or len(pos) < 2:
         print("Invalid")
         print("\n")
         row = None
