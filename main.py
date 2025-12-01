@@ -3,12 +3,12 @@ import pieces as pie
 
 # Placeholder for testing
 board = [['  ', 'a ', 'b ', 'c ', 'd ', 'e ', 'f ', 'g ', 'h ' ],
-         ['1 ', '__', 'WH', 'WB', 'WQ', 'WK', 'WB', 'WH', 'WR' ],
+         ['1 ', 'WH', '__', 'WB', 'WQ', 'WK', 'WB', 'WH', 'WR' ],
          ['2 ', 'WP', '__', 'BP', '__', 'WP', 'WP', 'WP', 'WP' ],
          ['3 ', '__', '__', '__', '__', '__', '__', '__', '__' ],
-         ['4 ', '__', 'WP', 'WR', '__', 'BP', '__', '__', '__' ],
+         ['4 ', '__', '__', 'WR', '__', 'BP', '__', '__', '__' ],
          ['5 ', '__', '__', '__', '__', '__', '__', '__', '__' ], 
-         ['6 ', '__', '__', '__', '__', '__', '__', '__', '__' ], 
+         ['6 ', '__', '__', 'WP', '__', '__', '__', '__', '__' ], 
          ['7 ', 'BP', 'BP', 'BP', 'BP', 'BP', 'BP', 'BP', 'BP' ],
          ['8 ', 'BR', 'BH', 'BB', 'BQ', 'BK', 'BB', 'BH', 'BR' ]]
 
@@ -61,5 +61,5 @@ while True:
     print("\n")
     init_pos = input("Enter initial position: ")
     final_pos = input("Enter initial position: ")
-    pie.move_rook(board, init_pos, final_pos)
+    pie.move_pawn(board, init_pos, final_pos)
     print_board(board)

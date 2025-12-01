@@ -9,7 +9,7 @@ def move_rook(board, pos, move_pos):
         initial_rook_row, initial_rook_column = p.get_pos(pos)
         rook_move_row, rook_move_column = p.get_pos(move_pos)
 
-        move_up, move_down, move_left, move_right = False
+        move_up, move_down, move_left, move_right = False, False, False, False
 
         if initial_rook_row - rook_move_row == 0 and  rook_move_column - initial_rook_column < 0:
             move_left = True
@@ -62,9 +62,66 @@ def move_rook(board, pos, move_pos):
                     cut_piece(board, pos, move_pos)
         else:
             print("Cannot move diagonally")
-    else:
-        print(p.get_piece(board, pos))
-        print("Error: Selected position does not  contain a rook!!")
+
+def move_pawn(board, pos, move_pos):
+    init_piece_color = get_color(board, pos)
+    final_color = get_color(board, move_pos)
+
+    if p.get_piece(board, pos) == "WP" or p.get_piece(board, pos) == "BP":
+        initial_pawn_row, initial_pawn_column = p.get_pos(pos)
+        pawn_move_row, pawn_move_column = p.get_pos(move_pos)
+
+        move_up_pw, move_down_pw = False, False
+
+        if initial_pawn_column - pawn_move_column == 0 and  pawn_move_row - initial_pawn_row < 0:
+            move_up_pw = True
+        elif initial_pawn_column - pawn_move_column == 0 and  pawn_move_row - initial_pawn_row > 0:
+            move_down_pw = True
+
+        if init_piece_color == "White":
+            move_count = 0
+            if move_down_pw:
+                for i in range(initial_pawn_row + 1, pawn_move_row):
+                    move_count += 1
+
+                    if move_count > 2:
+                        print("Cannot move more than 2 places!! ")
+                        break 
+                        move_count = 0
+                    
+                    if board[i][initial_pawn_column] != "__" :
+                        print("illegal move")
+                        break
+                else:
+                    if pawn_move_row == initial_pawn_row + 1 and pawn_move_column == initial_pawn_column + 1:
+                        if init_piece_color == final_color:
+                            print("Cannot Vut own piece")
+                        else:
+                            cut_piece(board, pos, move_pos)
+   
+            else:
+                print("Illegal move!!")
+        if init_piece_color == "Black":
+            if move_up_pw:
+                if initial_pawn_row - pawn_move_row < 3:
+                    for i in range(pawn_move_row, initial_pawn_row):
+                        if board[i][initial_pawn_column] != "__" :
+                            print("illegal move")
+                            break
+                        else:
+                            p.change_position(board, pos, move_pos)
+                    else:
+                        if pawn_move_row == initial_pawn_row - 1 and pawn_move_column == initial_pawn_column - 1:
+                            if init_piece_color == final_color:
+                                print("Cannot Cut own piece")
+                            else:
+                                cut_piece(board, pos, move_pos)
+                else:
+                    print("Cannot move more than 2 places")
+
+            else:
+                print("Illegal move!!")
+
 
 def get_color(board, pos):
     piece  = p.get_piece(board, pos)
